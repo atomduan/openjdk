@@ -207,7 +207,8 @@ class StubGenerator: public StubCodeGenerator {
     return Address(rbp, (xmm_save_base - (reg - xmm_save_first) * 2) * wordSize);
   }
 #endif
-
+  
+  //duanjuntao
   address generate_call_stub(address& return_address) {
     assert((int)frame::entry_frame_after_call_words == -(int)rsp_after_call_off + 1 &&
            (int)frame::entry_frame_call_wrapper_offset == (int)call_wrapper_off,
@@ -6074,6 +6075,7 @@ address generate_avx_ghash_processBlocks() {
 
     StubRoutines::_forward_exception_entry = generate_forward_exception();
 
+    //duanjuntao
     StubRoutines::_call_stub_entry =
       generate_call_stub(StubRoutines::_call_stub_return_address);
 

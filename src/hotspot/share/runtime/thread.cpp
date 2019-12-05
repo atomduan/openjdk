@@ -3740,6 +3740,15 @@ void Threads::initialize_jsr292_core_classes(TRAPS) {
   initialize_class(vmSymbols::java_lang_invoke_MethodHandleNatives(), CHECK);
 }
 
+static void print_out_args(JavaVMInitArgs* args) {
+  tty->print_cr("Duanjuntao Print args BEGIN:=========================");
+  for (int index = 0; index < args->nOptions; index++) {
+    const JavaVMOption* option = args->options + index;
+    tty->print_cr("JavaVMOption-->optionString:%s", option->optionString);
+  }
+  tty->print_cr("Duanjuntao Print args END  :=========================");
+}
+
 jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
   extern void JDK_Version_init();
 
@@ -3804,6 +3813,8 @@ jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
     os::pause();
   }
 
+  // Print out raw args by duanjuntao
+  print_out_args(args);
   HOTSPOT_VM_INIT_BEGIN();
 
   // Timing (must come after argument parsing)
@@ -3847,6 +3858,7 @@ jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
   vm_init_globals();
 
 #if INCLUDE_JVMCI
+  //JVM Compiler Interface
   if (JVMCICounterSize > 0) {
     JavaThread::_jvmci_old_thread_counters = NEW_C_HEAP_ARRAY(jlong, JVMCICounterSize, mtJVMCI);
     memset(JavaThread::_jvmci_old_thread_counters, 0, sizeof(jlong) * JVMCICounterSize);

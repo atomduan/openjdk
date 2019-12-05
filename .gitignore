@@ -13,3 +13,13 @@ test/nashorn/lib
 NashornProfile.txt
 **/JTreport/**
 **/JTwork/**
+
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+
+README.md
+*.swp
+*.log
+

@@ -291,7 +291,8 @@ JLI_Launch(int argc, char ** argv,              /* main argc, argv */
     if (JLI_IsTraceLauncher()) {
         start = CounterGet();
     }
-
+    
+    //duanjuntao
     if (!LoadJavaVM(jvmpath, &ifn)) {
         return(6);
     }
@@ -411,6 +412,7 @@ JavaMain(void* _args)
 
     /* Initialize the virtual machine */
     start = CounterGet();
+    //duanjuntao
     if (!InitializeJVM(&vm, &env, &ifn)) {
         JLI_ReportErrorMessage(JVM_ERROR1);
         exit(1);
